@@ -9,7 +9,31 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    
+    <div class="container">
+        <header role="banner">
+            <h1 class="app-name">Gastroflix</h1>
+        </header>
+        <main role="main">
+            <section class="search-section">
+                <div class="location-search">
+                    <form>
+                        <label for="location"></label>
+                        <input type="text" name="location" id="searchLocation" placeholder="Enter the location">
+                        <input type="button" value="Go!">
+                    </form>
+                </div>
+            </section>
+            <div class="flex-container">
+                <section class="movie-section">
+                    <div class="js-movie-results"></div>
+                </section>
+                <section class="restaurant-section">
+                    <div class="js-restaurant-results"></div>
+                </section>
+            </div>
+        </main>
+        <footer role="contentinfo"></footer>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="index.js"></script>
 </body>
