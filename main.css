@@ -33,3 +33,15 @@ form {
     margin-left: auto;
     margin-right: auto;
 }
+
+.error-message { 
+    color: red; 
+}
+
+.hidden { 
+    display: none; 
+}
+
+li {
+    list-style-type: none;
+}

@@ -8,7 +8,21 @@ const urlYelp = "https://api.yelp.com/v3/categories/";
 const apiKeyMovieGlu = "0mcK8liAA823jNLp5iqfmV5lAu467j84v4OW3I6c";
 const urlMovieGlu = "https://api-gate2.movieglu.com/";
 
- function getCinemasByLocation(zipResponseJson){
+function displayCinemaResults(cinemaResponseJson){
+    console.log(cinemaResponseJson);
+    $('#cinema-list').empty();
+    for(let i = 0; i < cinemaResponseJson.cinemas.length; i++){
+        $('#cinema-list').append(
+            `<li><h3>${cinemaResponseJson.cinemas[i].cinema_name}</h3>
+            <img src="${cinemaResponseJson.cinemas[i].logo_url}" alt="${cinemaResponseJson.cinemas[i].cinema_name} logo">
+            <p>${cinemaResponseJson.cinemas[i].address}, ${cinemaResponseJson.cinemas[i].city}, AZ ${cinemaResponseJson.cinemas[i].postcode}</p>
+            <button type="button" id="${cinemaResponseJson.cinemas[i].cinema_id}">Movies and Showtimes</button>
+            </li>`
+        )};
+    $('.movie-section').removeClass("hidden");
+}
+
+function getCinemasByLocation(zipResponseJson){
     const cinemaHeader = {
         headers: new Headers({
             "client" : "THIN_2",
@@ -22,12 +36,13 @@ const urlMovieGlu = "https://api-gate2.movieglu.com/";
     };
     const cinemaUrl = urlMovieGlu + "cinemasNearby/?n=24";
 
+    console.log(`${zipResponseJson.records[0].fields.latitude};${zipResponseJson.records[0].fields.longitude}`);
     fetch(cinemaUrl, cinemaHeader).then(cinemaResponse => {
         if(cinemaResponse.ok){
             return cinemaResponse.json();
         }
         throw new Error(cinemaResponse.statusText);
-    }).then(cinemaResponseJson => console.log(cinemaResponseJson))
+    }).then(cinemaResponseJson => displayCinemaResults(cinemaResponseJson))
     .catch(err => {
         $('#js-error-message').text(`Something Failed: ${err.message}`);
     })
@@ -41,7 +56,8 @@ function getZipCodeLatLong(searchTerm){
     };
     let queryString = $.param(zipParams);
     const zipUrl = "https://public.opendatasoft.com/api/records/1.0/search?" + queryString;
-    console.log("url", zipUrl);
+    
+    console.log("zip url", zipUrl);
     fetch(zipUrl).then(zipResponse => {
         if(zipResponse.ok){
             return zipResponse.json();
@@ -57,6 +73,7 @@ function watchForm(){
     $('form').submit(event => {
         event.preventDefault();
         const searchTerm = $('#searchLocation').val();
+        
         console.log("data", searchTerm);
         getZipCodeLatLong(searchTerm);
     })
