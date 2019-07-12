@@ -8,6 +8,49 @@ const urlYelp = "https://api.yelp.com/v3/categories/";
 const apiKeyMovieGlu = "0mcK8liAA823jNLp5iqfmV5lAu467j84v4OW3I6c";
 const urlMovieGlu = "https://api-gate2.movieglu.com/";
 
+function getMoviesForCinema(cinema){
+    const showtimeHeader = {
+        headers: new Headers({
+            "client" : "THIN_2",
+            "x-api-key" : apiKeyMovieGlu,
+            "authorization" : "Basic VEhJTl8yOlF3WlJuM0prNks2Tg==",
+            "territory" : "US",
+            "api-version" : "v200",
+            "device-datetime" : d.toISOString()
+        })
+    };
+    let dd = String(d.getDate()).padStart(2, '0');
+    let mm = String(d.getMonth() + 1).padStart(2, '0');
+    let yyyy = d.getFullYear();
+    let currentDate = yyyy + '-' + mm + '-' + dd;
+    console.log(currentDate);
+    const showtimeParams = {
+        cinema_id: cinema,
+        date: currentDate,
+    };
+    let showtimeQueryString = $.param(showtimeParams);
+    const showtimeUrl = urlMovieGlu + "cinemaShowTimes/?" + showtimeQueryString;
+
+    console.log(showtimeUrl);
+    fetch(showtimeUrl, showtimeHeader).then(showtimeResponse => {
+        if(showtimeResponse.ok){
+            return showtimeResponse.json();
+        }
+        throw new Error(showtimeResponse.statusText);
+    }).then(showtimeResponseJson => console.log(showtimeResponseJson))
+    .catch(err => {
+        $('#js-error-message').text(`Something Failed: ${err.message}`);
+    })
+}
+
+function onClickDisplayMovieRestaurant(){
+    $('.js-movie-results').on('click', 'li', function(){
+        let cinema = $(this).find('button').attr('id');
+
+        getMoviesForCinema(cinema);
+    })
+}   
+
 function displayCinemaResults(cinemaResponseJson){
     console.log(cinemaResponseJson);
     $('#cinema-list').empty();
@@ -16,7 +59,7 @@ function displayCinemaResults(cinemaResponseJson){
             `<li><h3>${cinemaResponseJson.cinemas[i].cinema_name}</h3>
             <img src="${cinemaResponseJson.cinemas[i].logo_url}" alt="${cinemaResponseJson.cinemas[i].cinema_name} logo">
             <p>${cinemaResponseJson.cinemas[i].address}, ${cinemaResponseJson.cinemas[i].city}, AZ ${cinemaResponseJson.cinemas[i].postcode}</p>
-            <button type="button" id="${cinemaResponseJson.cinemas[i].cinema_id}">Movies and Showtimes</button>
+            <button type="button" id="${cinemaResponseJson.cinemas[i].cinema_id}">Movies and Restaurants</button>
             </li>`
         )};
     $('.movie-section').removeClass("hidden");
@@ -73,10 +116,15 @@ function watchForm(){
     $('form').submit(event => {
         event.preventDefault();
         const searchTerm = $('#searchLocation').val();
-        
+
         console.log("data", searchTerm);
         getZipCodeLatLong(searchTerm);
     })
 }
 
-$(watchForm);
+function handleSubmits(){
+    watchForm();
+    onClickDisplayMovieRestaurant();
+}
+
+$(handleSubmits);
