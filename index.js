@@ -8,6 +8,55 @@ const urlYelp = "https://api.yelp.com/v3/categories/";
 const apiKeyMovieGlu = "0mcK8liAA823jNLp5iqfmV5lAu467j84v4OW3I6c";
 const urlMovieGlu = "https://api-gate2.movieglu.com/";
 
+function displayFilmResults(showtimeResponseJson){
+    for(i = 0; i < showtimeResponseJson.films.length; i++){
+        $('#cinema-list').append(
+            `<li><h3>${showtimeResponseJson.films[i].film_name}</h3>
+            <img src="${showtimeResponseJson.films[i].images.poster[1].medium.film_image}" alt="${showtimeResponseJson.films[i].film_name} poster">
+            <img src="${showtimeResponseJson.films[i].age_rating[0].age_rating_image}" alt="age rating image">
+            <h4>Standard Showtimes</h4>
+            <ul class="standardShowings"></ul>
+            </li>`
+        )
+        let timesArr = showtimeResponseJson.films[i].showings.Standard.times;
+        console.log(timesArr);
+        for(n = 0; n < timesArr.length; n++){
+            $('.standardShowings').append(
+                `<li>${timesArr[n].start_time}</li>`
+            )
+        }
+    }
+}
+
+// function displayStandardShowingsResults(showtimeResponseJson){
+//     for(i = 0; i < showtimeResponseJson.films.length; i++){
+//         let timesArr = showtimeResponseJson.films[i].showings.Standard.times;
+//         console.log(timesArr);
+//         for(n = 0; n < timesArr.length; n++){
+//             $('#standardShowings').append(
+//                 `<li>${timesArr[n].start_time}</li>`
+//             )
+//         }
+//     }
+// }
+
+// function displayImaxShowingsResults(showtimeResponseJson){
+//     for(i = 0; i < showtimeResponseJson.films.showings.IMAX.times.length; i++){
+//         $('#imaxShowings').append(
+//             `<li>${showtimeResponseJson.films.showings.IMAX.times[i].start_time}</li>`
+//         )
+//     }
+// }
+
+function displayShowtimeResults(showtimeResponseJson){
+    console.log(showtimeResponseJson);
+    $('#cinema-list').empty();
+    $('#movie-results').text(`${showtimeResponseJson.cinema.cinema_name}`);
+    displayFilmResults(showtimeResponseJson);
+    // displayStandardShowingsResults(showtimeResponseJson);
+    // displayImaxShowingsResults(showtimeResponseJson);
+}
+
 function getMoviesForCinema(cinema){
     const showtimeHeader = {
         headers: new Headers({
@@ -19,6 +68,8 @@ function getMoviesForCinema(cinema){
             "device-datetime" : d.toISOString()
         })
     };
+    console.log(d);
+    console.log(d.toISOString());
     let dd = String(d.getDate()).padStart(2, '0');
     let mm = String(d.getMonth() + 1).padStart(2, '0');
     let yyyy = d.getFullYear();
@@ -37,7 +88,7 @@ function getMoviesForCinema(cinema){
             return showtimeResponse.json();
         }
         throw new Error(showtimeResponse.statusText);
-    }).then(showtimeResponseJson => console.log(showtimeResponseJson))
+    }).then(showtimeResponseJson => displayShowtimeResults(showtimeResponseJson))
     .catch(err => {
         $('#js-error-message').text(`Something Failed: ${err.message}`);
     })
