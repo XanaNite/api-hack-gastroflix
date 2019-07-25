@@ -1,11 +1,11 @@
 console.log("js attached");
 
-let d = new Date()
+let d = new Date();
 
 const apiKeyYelp = "CjrGwySGXlQ7WM-8KxkcW6UmqNdbLrAWSPuVQ94h_oicfw2sAH7kg1QhcRDqJwwxnlYeJt7mHGQRHIxXhV-Nu9uWlwuioOzwEdY_hGELQexdt7TqTB22UMzDnBscXXYx";
 const urlYelp = "https://api.yelp.com/v3/categories/";
 
-const apiKeyMovieGlu = "0mcK8liAA823jNLp5iqfmV5lAu467j84v4OW3I6c";
+const apiKeyMovieGlu = "BUa50YENY92YKfH6BDbBU8wqsJopPRzv1e1NqUwC";
 const urlMovieGlu = "https://api-gate2.movieglu.com/";
 
 function displayFilmResults(showtimeResponseJson){
@@ -15,15 +15,15 @@ function displayFilmResults(showtimeResponseJson){
             <img src="${showtimeResponseJson.films[i].images.poster[1].medium.film_image}" alt="${showtimeResponseJson.films[i].film_name} poster">
             <img src="${showtimeResponseJson.films[i].age_rating[0].age_rating_image}" alt="age rating image">
             <h4>Standard Showtimes</h4>
-            <ul class="standardShowings"></ul>
+            <ul class=${showtimeResponseJson.films[i].film_id}></ul>
             </li>`
         )
         let timesArr = showtimeResponseJson.films[i].showings.Standard.times;
         console.log(timesArr);
         for(n = 0; n < timesArr.length; n++){
-            $('.standardShowings').append(
+            $(`.${showtimeResponseJson.films[i].film_id}`).append(
                 `<li>${timesArr[n].start_time}</li>`
-            )
+            );
         }
     }
 }
@@ -60,9 +60,9 @@ function displayShowtimeResults(showtimeResponseJson){
 function getMoviesForCinema(cinema){
     const showtimeHeader = {
         headers: new Headers({
-            "client" : "THIN_2",
+            "client" : "STUD_81",
             "x-api-key" : apiKeyMovieGlu,
-            "authorization" : "Basic VEhJTl8yOlF3WlJuM0prNks2Tg==",
+            "authorization" : "Basic U1RVRF84MTp5Z1FGWjNNeE9tdDg=",
             "territory" : "US",
             "api-version" : "v200",
             "device-datetime" : d.toISOString()
