@@ -53,6 +53,31 @@ const apiKeyZomato = "642c3e32e26546ef08ba6e8b314c00be";
 const apiKeyMovieGlu = "BUa50YENY92YKfH6BDbBU8wqsJopPRzv1e1NqUwC";
 const urlMovieGlu = "https://api-gate2.movieglu.com/";
 
+function dispalyRestaurantResults(restaurantResponseJson){
+    console.log('restaurantResponseJson');
+    for(i = 0; i < restaurantResponseJson.restaurants.length; i++){
+        $('#restaurant-list').append(`<li>
+            <h3>${restaurantResponseJson.restaurants[i].restaurant.name}</h3>
+            <address>
+                <div class="street-address">
+                    ${restaurantResponseJson.restaurants[i].restaurant.location.address}, ${restaurantResponseJson.restaurants[i].restaurant.location.city}, ${restaurantResponseJson.restaurants[i].restaurant.location.zipcode}
+                </div>
+                <div class="tel">
+                    Tel: ${restaurantResponseJson.restaurants[i].restaurant.phone_number}
+                </div>
+            </address>
+            <div class="cuisine">
+                <p>${restaurantResponseJson.restaurants[i].restaurant.cuisines}</p>
+                <p>Menu Link: ${restaurantResponseJson.restaurants[i].restaurant.menu_url}</p>
+            </div>
+            <div class="hours">
+                Hours of Operations: ${restaurantResponseJson.restaurants[i].restaurant.timings}
+            </div>
+        </li>`)
+    };
+    $('.restaurant-section').removeClass("hidden");
+}
+
 function getRestaurantResults(latLocation, lngLocation){
     console.log(latLocation, lngLocation);
     let restaurantUrl = `https://developers.zomato.com/api/v2.1/search?lat=${latLocation}&lon=${lngLocation}&radius=8046&sort=real_distance`;
@@ -68,7 +93,7 @@ function getRestaurantResults(latLocation, lngLocation){
             return restaurantResponse.json();
         }
         throw new Error(restaurantResponse.statusText);
-    }).then(restaurantResponseJson => console.log(restaurantResponseJson))
+    }).then(restaurantResponseJson => dispalyRestaurantResults(restaurantResponseJson))
     .catch(err =>{
         $('#js-error-message').text(`Something Failed: ${err.message}`);
     })
@@ -90,7 +115,7 @@ function displayFilmResults(showtimeResponseJson){
                 </ul>
             </li>`
         )
-    }
+    };
 }
 
 function displayStandardShowingsResults(showtimeResponseJson){
@@ -184,10 +209,10 @@ function getMoviesForCinema(cinema){
 
 function onClickDisplayMovieRestaurant(){
     $('.js-movie-results').on('click', 'li', function(){
-//        let cinema = $(this).find('button').attr('id');
+        let cinema = $(this).find('button').attr('id');
         let latLocation = $(this).closest('li').find('p').attr('class');
         let lngLocation = $(this).closest('li').find('p').attr('id');
-//        getMoviesForCinema(cinema);
+        getMoviesForCinema(cinema);
         getRestaurantResults(latLocation, lngLocation)
     })
 }   
@@ -198,11 +223,11 @@ function displayCinemaResults(cinemaResponseJson){
     for(let i = 0; i < cinemaResponseJson.cinemas.length; i++){
         $('#cinema-list').append(
             `<li><h3>${cinemaResponseJson.cinemas[i].cinema_name}</h3>
-            <img src="${cinemaResponseJson.cinemas[i].logo_url}" alt="${cinemaResponseJson.cinemas[i].cinema_name} logo">
-            <p class="${cinemaResponseJson.cinemas[i].lat}" id="${cinemaResponseJson.cinemas[i].lng}">${cinemaResponseJson.cinemas[i].address}, ${cinemaResponseJson.cinemas[i].city}, AZ ${cinemaResponseJson.cinemas[i].postcode}</p>
+            <p class="${cinemaResponseJson.cinemas[i].lat}" id="${cinemaResponseJson.cinemas[i].lng}">${cinemaResponseJson.cinemas[i].address}, ${cinemaResponseJson.cinemas[i].city}, ${cinemaResponseJson.cinemas[i].postcode}</p>
             <button type="button" id="${cinemaResponseJson.cinemas[i].cinema_id}">Movies and Restaurants</button>
             </li>`
-        )};
+        )
+    };
     $('.movie-section').removeClass("hidden");
 }
 
