@@ -48,11 +48,31 @@ let getCurrentDateTime = function(){
     return current_datetime + timezone_standard;
 };
 
-const apiKeyYelp = "CjrGwySGXlQ7WM-8KxkcW6UmqNdbLrAWSPuVQ94h_oicfw2sAH7kg1QhcRDqJwwxnlYeJt7mHGQRHIxXhV-Nu9uWlwuioOzwEdY_hGELQexdt7TqTB22UMzDnBscXXYx";
-const urlYelp = "https://api.yelp.com/v3/categories/";
+const apiKeyZomato = "642c3e32e26546ef08ba6e8b314c00be";
 
 const apiKeyMovieGlu = "BUa50YENY92YKfH6BDbBU8wqsJopPRzv1e1NqUwC";
 const urlMovieGlu = "https://api-gate2.movieglu.com/";
+
+function getRestaurantResults(latLocation, lngLocation){
+    console.log(latLocation, lngLocation);
+    let restaurantUrl = `https://developers.zomato.com/api/v2.1/search?lat=${latLocation}&lon=${lngLocation}&radius=8046&sort=real_distance`;
+    console.log(restaurantUrl);
+    const restaurantHeader = {
+        headers: new Headers({
+            "user-key": apiKeyZomato
+        })
+    };
+
+    fetch(restaurantUrl, restaurantHeader).then(restaurantResponse =>{
+        if(restaurantResponse.ok){
+            return restaurantResponse.json();
+        }
+        throw new Error(restaurantResponse.statusText);
+    }).then(restaurantResponseJson => console.log(restaurantResponseJson))
+    .catch(err =>{
+        $('#js-error-message').text(`Something Failed: ${err.message}`);
+    })
+}
 
 function displayFilmResults(showtimeResponseJson){
     for(i = 0; i < showtimeResponseJson.films.length; i++){
@@ -164,9 +184,11 @@ function getMoviesForCinema(cinema){
 
 function onClickDisplayMovieRestaurant(){
     $('.js-movie-results').on('click', 'li', function(){
-        let cinema = $(this).find('button').attr('id');
-
-        getMoviesForCinema(cinema);
+//        let cinema = $(this).find('button').attr('id');
+        let latLocation = $(this).closest('li').find('p').attr('class');
+        let lngLocation = $(this).closest('li').find('p').attr('id');
+//        getMoviesForCinema(cinema);
+        getRestaurantResults(latLocation, lngLocation)
     })
 }   
 
@@ -177,7 +199,7 @@ function displayCinemaResults(cinemaResponseJson){
         $('#cinema-list').append(
             `<li><h3>${cinemaResponseJson.cinemas[i].cinema_name}</h3>
             <img src="${cinemaResponseJson.cinemas[i].logo_url}" alt="${cinemaResponseJson.cinemas[i].cinema_name} logo">
-            <p>${cinemaResponseJson.cinemas[i].address}, ${cinemaResponseJson.cinemas[i].city}, AZ ${cinemaResponseJson.cinemas[i].postcode}</p>
+            <p class="${cinemaResponseJson.cinemas[i].lat}" id="${cinemaResponseJson.cinemas[i].lng}">${cinemaResponseJson.cinemas[i].address}, ${cinemaResponseJson.cinemas[i].city}, AZ ${cinemaResponseJson.cinemas[i].postcode}</p>
             <button type="button" id="${cinemaResponseJson.cinemas[i].cinema_id}">Movies and Restaurants</button>
             </li>`
         )};
