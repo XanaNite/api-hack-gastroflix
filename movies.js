@@ -97,6 +97,7 @@ function getMoviesForCinema(cinema){
     let showtimeQueryString = $.param(showtimeParams);
     const showtimeUrl = urlMovieGlu + "cinemaShowTimes/?" + showtimeQueryString;
 
+    console.log('cinema', cinema);
     console.log("ISO UTC", d.toISOString());
     console.log("Date", currentDate);
     console.log(showtimeUrl);
