@@ -16,9 +16,9 @@ function displayCinemaResults(cinemaResponseJson){
 function getCinemasByLocation(zipResponseJson){
     const cinemaHeader = {
         headers: new Headers({
-            "client" : "THIN_2",
+            "client" : moviegluUsername,
             "x-api-key" : apiKeyMovieGlu,
-            "authorization" : "Basic VEhJTl8yOlF3WlJuM0prNks2Tg==",
+            "authorization" : moviegluAuthorization,
             "territory" : "US",
             "api-version" : "v200",
             "device-datetime" : getCurrentDateTime(),

@@ -82,9 +82,9 @@ function displayShowtimeResults(showtimeResponseJson){
 function getMoviesForCinema(cinema){
     const showtimeHeader = {
         headers: new Headers({
-            "client" : "STUD_81",
+            "client" : moviegluUsername,
             "x-api-key" : apiKeyMovieGlu,
-            "authorization" : "Basic U1RVRF84MTp5Z1FGWjNNeE9tdDg=",
+            "authorization" : moviegluAuthorization,
             "territory" : "US",
             "api-version" : "v200",
             "device-datetime" : getCurrentDateTime()
