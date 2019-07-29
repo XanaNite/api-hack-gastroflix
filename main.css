@@ -3,7 +3,8 @@
 }
 
 body { 
-    font-family: 'Roboto', sans-serif; 
+    font-family: 'Roboto', sans-serif;
+    text-align: center; 
 }
 
 header {
@@ -16,7 +17,6 @@ header {
 
 .app-name {
     font-size: 45px;
-    text-align: center;
 }
 
 main {
@@ -25,7 +25,6 @@ main {
 
 .location-search {
     display: block;
-    text-align: center;
 }
 
 form {
@@ -42,6 +41,55 @@ form {
     display: none; 
 }
 
+h2 {
+    font-size: 50px;
+    text-shadow: 2px 2px black;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
 li {
     list-style-type: none;
+}
+
+#movie-header {
+    background-image: url('https://cdn.pixabay.com/photo/2018/12/22/05/07/movie-3889187_960_720.jpg');
+    background-position: center;
+    color: #70869E;
+}
+
+#restaurant-header {
+    background-image: url('https://cdn.pixabay.com/photo/2015/04/25/07/55/restaurant-738788_960_720.jpg');
+    background-position: center;
+    color: #998E7E;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hours {
+    padding: 10px;
+}
+
+@media screen and (min-device-width: 1200px) {
+    h2 {
+        font-size: 100px;
+    }
+
+    .flex-container {
+        display: flex;
+    }
+
+    .movie-section {
+        width: 50%;
+
+    }
+
+    .restaurant-section {
+        width: 50%;
+    }
+
 }
