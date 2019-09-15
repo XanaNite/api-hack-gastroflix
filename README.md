@@ -6,6 +6,27 @@ Live URL: https://xananite.github.io/api-hack-gastroflix/
 
 Users will be able to search in a location to get a list of “Now Playing” movies and nearby restaurants for the perfect outing.
 
+## Screenshots
+### Ipad
+Cinema results on an iPad:
+<img src="./img/README_img/iPad_theater_results.png"
+     alt="iPad cinema results"
+     style="float: left; margin-right: 10px;" />
+Movie results on an iPad:
+<img src="./img/README_img/iPad_movie_results.png"
+     alt="iPad movie results"
+     style="float: left; margin-right: 10px;" />
+Restaurant results on an iPad:
+<img src="./img/README_img/iPad_restaurant_results.png"
+     alt="iPad restaurant results"
+     style="float: left; margin-right: 10px;" />
+
+### 1200px+ Screen
+Movie and Restaurant results on a screen 1200px or higher:
+<img src="./img/README_img/pc_movie_restaurant_results.png"
+     alt="1200 pixels plus screen movie and restaurant results"
+     style="float: left; margin-right: 10px;" />
+
 ## APIs
 Zip code Lat/Long API: https://public.opendatasoft.com/explore/dataset/us-zip-code-latitude-and-longitude/api/  <br />
 MovieGlu  API: https://developer.movieglu.com/v2/api-index/quick-start-guide/  <br />
