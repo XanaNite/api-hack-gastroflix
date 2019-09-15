@@ -10,6 +10,7 @@ body {
 }
 
 header {
+    font-family: 'Fredericka the Great', cursive;
     width: 100%;
     height: 200px;
     background-image: url('./img/gastroflix-background.jpg');
@@ -52,6 +53,7 @@ form {
 }
 
 h2 {
+    font-family: 'Gayathri', sans-serif;
     font-size: 50px;
     text-shadow: 2px 2px black;
     margin: 0;

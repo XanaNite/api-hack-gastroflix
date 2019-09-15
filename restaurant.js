@@ -15,7 +15,7 @@ function dispalyRestaurantResults(restaurantResponseJson){
             </address>
             <div class="cuisine">
                 <p>${restaurantResponseJson.restaurants[i].restaurant.cuisines}</p>
-                <a href="${restaurantResponseJson.restaurants[i].restaurant.menu_url}">Menu</a>
+                <a href="${restaurantResponseJson.restaurants[i].restaurant.menu_url}" target="_blank">Menu</a>
             </div>
             <div class="hours">
                 Hours of Operations: ${restaurantResponseJson.restaurants[i].restaurant.timings}

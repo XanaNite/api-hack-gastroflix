@@ -84,5 +84,5 @@ Refresh list when new location is entered  <br />
 		* headline with icon
 		* text hard to read
 	* Theaters
-		* add states
+		* add states (API doesn't provide the state)
 	* menu to open in new tab
