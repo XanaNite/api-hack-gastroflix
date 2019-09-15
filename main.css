@@ -79,6 +79,10 @@ li {
     width: 100px;
 }
 
+#cinema-list {
+    border: 1px solid black;
+}
+
 #restaurant-header {
     background-position: center;
     color: #70869E;
@@ -91,6 +95,10 @@ li {
     width: 100px;
 }
 
+#restaurant-list {
+    border: 1px solid black;
+}
+
 .center {
     display: block;
     margin-left: auto;
@@ -101,7 +109,7 @@ li {
     padding: 10px;
 }
 
-@media screen and (min-device-width: 1200px) {
+@media screen and (min-width: 1200px) {
     header {
         height: 300px;
     }
@@ -124,11 +132,11 @@ li {
     }
 
     #movie-header{
-        height: 260px;
+        height: 300px;
     }
 
     #restaurant-header{
-        height: 260px;
+        height: 300px;
     }
 
     .restaurant-section {
@@ -143,5 +151,7 @@ li {
 
     #restaurant-list li {
         width: 250px;
+        padding: 5px;
+        margin-left: 5px;
     }
 }

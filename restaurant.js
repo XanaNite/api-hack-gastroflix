@@ -43,6 +43,6 @@ function getRestaurantResults(latLocation, lngLocation){
         throw new Error(restaurantResponse.statusText);
     }).then(restaurantResponseJson => dispalyRestaurantResults(restaurantResponseJson))
     .catch(err =>{
-        $('#js-error-message').text(`Something Failed: ${err.message}`);
+        $('#js-restaurant-error-message').text(`Something Failed: ${err.message}`);
     })
 }

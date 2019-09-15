@@ -78,6 +78,7 @@ Refresh list when new location is entered  <br />
 
 ## Changes made based on user feedback
 	* need to add catch for error with movies
+		* displaying movies results in cors depending on time accessed
 	* description about about on homepage
 	* Header
 		* make image smaller

@@ -17,6 +17,11 @@ function onClickDisplayMovieRestaurant(){
 
 function watchForm(){
     $('form').submit(event => {
+        $('#cinema-list').empty();
+        $('#js-movie-error-message').empty();
+        $('#restaurant-list').empty();
+        $('.restaurant-section').addClass('hidden');
+   
         event.preventDefault();
         const searchTerm = $('#searchLocation').val();
 

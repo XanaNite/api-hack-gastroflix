@@ -71,7 +71,6 @@ function displayImaxShowingsResults(showtimeResponseJson){
 function displayShowtimeResults(showtimeResponseJson){
     console.log(showtimeResponseJson);
 
-    $('#cinema-list').empty();
     $('#movie-results').text(`${showtimeResponseJson.cinema.cinema_name}`);
     displayFilmResults(showtimeResponseJson);
     displayStandardShowingsResults(showtimeResponseJson);
@@ -80,6 +79,8 @@ function displayShowtimeResults(showtimeResponseJson){
 }
 
 function getMoviesForCinema(cinema){
+    $('#cinema-list').empty();
+
     const showtimeHeader = {
         headers: new Headers({
             "client" : moviegluUsername,
@@ -109,6 +110,6 @@ function getMoviesForCinema(cinema){
         throw new Error(showtimeResponse.statusText);
     }).then(showtimeResponseJson => displayShowtimeResults(showtimeResponseJson))
     .catch(err => {
-        $('#js-error-message').text(`Something Failed: ${err.message}`);
+        $('#js-movie-error-message').text(`No showtimes available`);
     })
 }
