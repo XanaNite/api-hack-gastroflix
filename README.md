@@ -8,21 +8,27 @@ Users will be able to search in a location to get a list of “Now Playing” mo
 
 ## Screenshots
 ### Ipad
-Cinema results on an iPad: </br>
+Cinema results on an iPad: 
+</br>
 <img src="./img/README_img/iPad_theater_results.PNG"
      alt="iPad cinema results"
      style="float: left; margin-right: 10px;" />
-Movie results on an iPad: </br>
+</br>
+Movie results on an iPad: 
+</br>
 <img src="./img/README_img/iPad_movie_results.PNG"
      alt="iPad movie results"
      style="float: left; margin-right: 10px;" />
-Restaurant results on an iPad: </br>
+</br>
+Restaurant results on an iPad: 
+</br>
 <img src="./img/README_img/iPad_restaurant_results.PNG"
      alt="iPad restaurant results"
      style="float: left; margin-right: 10px;" />
 
 ### 1200px+ Screen
-Movie and Restaurant results on a screen 1200px or higher: </br>
+Movie and Restaurant results on a screen 1200px or higher: 
+</br>
 <img src="./img/README_img/pc_movie_restaurant_results.PNG"
      alt="1200 pixels plus screen movie and restaurant results"
      style="float: left; margin-right: 10px;" />
