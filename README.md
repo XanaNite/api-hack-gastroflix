@@ -9,7 +9,7 @@ Users will be able to search in a location to get a list of “Now Playing” mo
 ## Screenshots
 ### Ipad
 Cinema results on an iPad:
-<img src="./img/README_img/iPad_theater_results.png"
+<img src="./img/README_img/iPad_theater_results.PNG"
      alt="iPad cinema results"
      style="float: left; margin-right: 10px;" />
 Movie results on an iPad:
