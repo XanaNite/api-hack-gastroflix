@@ -54,3 +54,35 @@ Refresh list when new location is entered  <br />
 | Restaurant list |
 |-----------------|
 | User selects movie link ------------- takes to site to view menu |
+
+## Users feedback
+### Kayla
+	* NICE!! The app worked as intended for me!
+	* Super small, doesn’t need to change, but the CTA for ‘Movies and Restaurants’ don’t show me movies but theaters! If you feel up for it, something along the lines of Theater and nearby restaurants would drive it home. (*this is because cors error)
+	* Also, I saw an error when I entered my zipcode and chose a theater + restaurants button.
+### Crystal
+	* Do you think the app is interesting or valuable?
+		* Yeah, I like the idea of finding a movie and a place to eat all in one app. Perfect date night app
+	* Did you use the app as intended?
+		* Yep, put in a zipcode and got back a list of theaters, selected movie and restaurants and got back a list of restaurants
+	* Did you encounter any bugs or broken features?
+		* looks like a cores error appears when fetching the movies.
+	* Did you understand how to use the app?
+		* Could use some description on the homepage about what this app does, I wasn’t sure what was going to happen after I put in a zipcode.
+### TJ
+	* Cinema Results is not bad, but I would maybe squash that image, it takes up about 25-30% of the screen, and on smaller screens, could be 50%. I think a headline with maybe an icon of a cinema reel would suffice. The text is very hard to read on top of that image and that's going to hurt a11y.
+	* List of theatres are fine, but they are missing the state. I know that doesn't matter too much since I should know the state I live in when i use a Zip Code, but I think it should be there regardless
+	* I like the side by side for Movies & Restuarants, but same issue with the image and text.
+	* Also, I'm hoping that down the line, I would be able to click on a showtime to go book that time
+	* Menu on restaurants does not open in a new tab, and instead takes you away from your app.
+
+## Changes made based on user feedback
+	* need to add catch for error with movies
+	* description about about on homepage
+	* Header
+		* make image smaller
+		* headline with icon
+		* text hard to read
+	* Theaters
+		* add states
+	* menu to open in new tab
