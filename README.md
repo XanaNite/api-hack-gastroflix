@@ -1,7 +1,5 @@
 Partners: Amber Meritt Campbell & James Scherer
 
-Live URL: https://xananite.github.io/api-hack-gastroflix/
-
 # Gastroflix
 
 Users will be able to search in a location to get a list of “Now Playing” movies and nearby restaurants for the perfect outing.
